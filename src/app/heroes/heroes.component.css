@@ -1,0 +1,16 @@
+.heroes {
+    background-color: lightgray;
+}
+
+.badge {
+    opacity: 0.5;
+    margin-right: 15px;  
+}
+
+.name {
+    font-weight: 700;
+}
+
+li {
+    list-style: none;
+}
