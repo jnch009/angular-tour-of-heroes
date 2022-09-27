@@ -10,25 +10,15 @@ import { getDateTime } from "../utility";
     styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-    constructor(private heroService: HeroService, private messageService: MessageService) { }
-    selectedHero?: Hero;
+    constructor(private heroService: HeroService) { }
     heroes: Hero[] = [];
 
     ngOnInit(): void {
         this.getHeroes();
     }
 
-    ngOnDestroy(): void {
-        this.messageService.clear();
-    }
-
     getHeroes(): void {
         this.heroService.getHeroes()
             .subscribe(heroes => this.heroes = heroes);
-    }
-
-    onSelect(hero: Hero): void {
-        this.selectedHero = hero;
-        this.messageService.add(`HeroesComponent: Selected hero id=${hero.id} ${getDateTime()}`);
     }
 }
