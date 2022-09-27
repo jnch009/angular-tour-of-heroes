@@ -18,6 +18,10 @@ export class HeroesComponent implements OnInit {
         this.getHeroes();
     }
 
+    ngOnDestroy(): void {
+        this.messageService.messages = [];
+    }
+
     getHeroes(): void {
         this.heroService.getHeroes()
             .subscribe(heroes => this.heroes = heroes);
