@@ -19,7 +19,7 @@ export class HeroesComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
-        this.messageService.messages = [];
+        this.messageService.clear();
     }
 
     getHeroes(): void {
