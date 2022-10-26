@@ -12,14 +12,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HeroService {
 
     constructor(private http: HttpClient, private messageService: MessageService) { }
-
+    private heroesUrl = 'api/heroes';  // URL to web api
     /** Log a HeroService message with the MessageService */
     private log(message: string) {
         this.messageService.add(`HeroService: ${message}`);
     }
 
     getHeroes(): Observable<Hero[]> {
-        const heroes = of(HEROES);
+        const heroes = this.http.get<Hero[]>(this.heroesUrl);
         this.log(`fetched heroes ${getDateTime()}`);
         return heroes;
     }
