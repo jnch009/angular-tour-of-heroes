@@ -1,7 +1,7 @@
 import { Hero } from "../hero";
 import { HEROES } from "../mock-heroes";
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of } from "rxjs";
+import { catchError, Observable, of, tap } from "rxjs";
 import { MessageService } from "./message.service";
 import { getDateTime } from "../utility";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -41,9 +41,10 @@ export class HeroService {
     getHeroes(): Observable<Hero[]> {
         const heroes = this.http.get<Hero[]>(this.heroesUrl)
         .pipe(
+            tap(_ => this.log(`fetched heroes ${getDateTime()}`)),
             catchError(this.handleError<Hero[]>('getHeroes', []))
         );
-        this.log(`fetched heroes ${getDateTime()}`);
+        
         return heroes;
     }
 
