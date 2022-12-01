@@ -23,8 +23,9 @@ export class HeroesComponent implements OnInit {
     add(name: string): void {
         name = name.trim();
         if (!name) { return; }
-        this.heroService.addHero({ name } as Hero).subscribe((hero) => {
-            this.heroes.push(hero);
-        })
+        // adding to the heroes array is not necessary in subscribe
+        // in order to update the db
+        // The reason why we do it is so that we can see the real time update
+        this.heroService.addHero({ name } as Hero).subscribe()
     }
 }
