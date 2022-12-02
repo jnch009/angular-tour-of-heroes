@@ -28,4 +28,9 @@ export class HeroesComponent implements OnInit {
         // The reason why we do it is so that we can see the real time update
         this.heroService.addHero({ name } as Hero).subscribe()
     }
+
+    delete(hero: Hero): void {
+        this.heroes = this.heroes.filter(h => h !== hero);
+        this.heroService.deleteHero(hero.id).subscribe();
+    }
 }
